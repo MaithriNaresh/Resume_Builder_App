@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resume_creator_project/ui_builder.dart';
 
 import 'main.dart';
 
@@ -10,8 +11,8 @@ class FinalResume extends StatelessWidget {
   Widget build(BuildContext context) {
     ResumeBuilderScreen? resumeBuilderScreen;
     return  Scaffold(
-      appBar: AppBar(title: Text("Final Resume"),),
-      body:SingleChildScrollView(
+      appBar:UiBuilder.buildAppBar("Final Resume"),
+      body:  resumeItem.isNotEmpty ?  SingleChildScrollView(
         child: ListBody(
           children: resumeItem
               .map((item) => Container(
@@ -29,7 +30,8 @@ class FinalResume extends StatelessWidget {
           ))
               .toList(),
         ),
-      ),
+      ) :
+          const Center(child: Text("Your Resume is Empty",style: TextStyle(fontSize: 20),),)
     );
   }
 }
